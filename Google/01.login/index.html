@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="831790739906-gtoj53dv5t3rvif2k7srfahal3h5ev5f.apps.googleusercontent.com">
+    <script>
+        function onSignIn(googleUser) {
+            var profile = googleUser.getBasicProfile();
+            console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
+            console.log('Name: ' + profile.getName());
+            console.log('Image URL: ' + profile.getImageUrl());
+            console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
+        }
+        
+        
+        //Uncaught ReferenceError: googleuser is not defined...cb=gapi.loaded_0:229 <= "googleuser" 대소문자 구별 "googleUser"임
+        function onSignIn1(googleUser) {
+            var profile = googleUser.getBasicProfile()
+            console.log('User is ' + JSON.stringify(profile));
+            
+            var strContents;
+            var element = document.querySelector('#content');
+            /*
+            element.innerText = profile.getId();
+            element.innerText = profile.getName();
+            element.innerText = profile.getGivenName();
+            element.innerText = profile.getFamilyName();
+            */
+
+            strContents = "ID : " + profile.getId() + "\n" +
+                        "성 : " + profile.getFamilyName() + "\n" +
+                        "이름 : " + profile.getGivenName() + "\n" +
+                        "이메일 : " + profile.getEmail();
+            element.innerText = strContents;        } 
+
+        //Uncaught ReferenceError: $ is not defined...cb=gapi.loaded_0:229 
+        function signOut() {
+            var auth2 = gapi.auth2.getAuthInstance();
+            auth2.signOut().then(function () {
+                alert("signed out");
+                console.log('User signed out.');
+            });
+        }
+    </script>
+</head>
+<body>
+    <p>Google Sign-In for website <div class="g-signin2"></div></p>
+    
+    <p>Google Sign-In for website with console.log <div class="g-signin2" data-onsuccess="onSignIn"></div></p>
+    
+    <p>Google Sign-In for website with innnerText<div class="g-signin2" data-onsuccess="onSignIn1"></div></p>
+    
+    <p><button onclick="signOut();">Sign out</button></p>
+    
+    <h1>My First Heading</h1>
+    <p>My first paragraph.</p>
+    
+    <div id="content"></div>
+</body>
+</html>

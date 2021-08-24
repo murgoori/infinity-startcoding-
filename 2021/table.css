@@ -1,0 +1,49 @@
+table { 
+	width: 750px; 
+	border-collapse: collapse; 
+	margin:50px auto;
+	}
+
+tr:nth-child(2n+0){background-color : #d7f7ff;}		/*짝수행만 배경을 다르게*/
+
+th { 
+	background: #3498db; 
+	color: white; 
+	font-weight: bold; 
+	}
+
+td, th { 
+	padding: 10px; 
+	border: 1px solid #ccc; 
+	text-align: center; 
+	font-size: 15px;
+	}
+
+/*td:nth-child(1){width=40%}*/
+th{border-bottom:double #ff0000;}							/*<th> 제목의 아래 행 두 줄짜리 라인*/
+
+tbody tr:hover{															/*<tr> 에 마우스 올리면 배경색 변경*/
+	background-color:#eaeaff;
+}
+
+.labels tr td {
+	background-color: #2cc16a;
+	font-weight: bold;
+	color: #fff;
+}
+
+.label tr td label {
+	display: block;
+}
+
+
+h1{
+	text-align:center;
+}
+
+[data-toggle="toggle"] {
+	display: none;
+}
+
+
+

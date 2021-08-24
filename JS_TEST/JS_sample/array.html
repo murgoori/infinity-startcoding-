@@ -1,0 +1,85 @@
+<script>
+/*
+*/
+</script>
+
+
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Array</title>
+ </head>
+ <body>
+ 
+ <script>
+	//**  자바스크립트의 2차원 배열은 1차원 배열에 또 다른 배열 객체를 추가하여 2차원 배열 만드는 방법을 사용
+
+	// arr[5][2]
+	var member = new Array(100);
+
+	for (var i = 0; i < member.length; i++) {
+		member[i] = new Array(2);
+	}
+	
+	var cnt = 0;
+
+	function join(){
+
+//		alert("d");
+//		alert(document.getElementById("name").value);
+//		alert(document.getElementById("password").value);
+		
+		var name = document.getElementById("name").value
+		var password = document.getElementById("password").value
+		
+		
+//		var tmpArray =[];
+//		tmpArray.push(name);
+//		tmpArray.push(password);
+
+//		alert(tmpArray[0] + "," + tmpArray[1]);
+
+//		alert(name);
+//		alert(password);
+
+		member[cnt][0] = name;
+		member[cnt][1] = password;
+		alert(name + "회원님의 회원가입이 완료되었습니다");
+//		document.write(member[0][0]);
+
+		//초기화
+		document.getElementById("name").value = "";
+		document.getElementById("password").value = "";
+
+		cnt++;
+	}
+
+	function view(){
+		var text = ""
+		document.getElementById("result").innerText = text;
+		for(var i = 0; i< cnt; i++){
+			no = i+1;
+			text = text + no + " : " + member[i][0] + "," +member[i][1] + "\n";
+			document.getElementById("result").innerText = text;
+		}
+	}
+ 
+     </script>
+
+
+    <h1>JavaScript 2Dimension Array</h1>
+	<input type="text" id="name" name="name" required  minlength="4" maxlength="8" size="10">
+	<input type="password" id="password" name="password" required  minlength="4" maxlength="8" size="10">
+    <button type="button" onclick="join()"> << 회원가입 >> </button>
+	<button type="button" onclick="view()"> << 멤버보기 >> </button>
+
+	<div id="result">
+	</div>
+ 
+ </body>
+</html>

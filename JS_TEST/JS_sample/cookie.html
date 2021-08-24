@@ -1,0 +1,112 @@
+<script>
+/*
+
+<쿠키 확인 방법>
+
+1. 크롬에서 현재 사용중인 쿠키를 확인하는 방법
+	브라우저를 열고 특정 사이트에 접속
+	F12를 눌러 크롬 개발자 모드를 실행
+	Application 탭 > Cookies 메뉴로 접근 > 하단의 접속한 사이트를 클릭
+
+2. F12를 누르고, Console 탭 실행
+	"document.cookie " Typing
+
+3. "C:\Users\<자신의사용자계정명>\AppData\Local\Google\Chrome\User Data\Default" 이동
+	Cookies 파일 : 쿠키목록을 가지고 있는 데이터베이스 파일 <= SQLite의 데이터베이스 포맷이기에 메모장 등으로 확인은 할 수 없음. 
+						쿠키목록을 확인하고 싶다면 SQLite 뷰어 등을 통해 확인이 가능
+
+
+< 크롬에서는 도메인이나 http 통신이 없는 경우 쿠키 저장 안함>
+로컬 파일로 열린 코드(file://)에서는 쿠키 저장이 안됨.
+또한 쿠키값을 사용할 도메인 지정이 필요
+
+2021년 3월 3일 업데이트 : 구글 크롬 제 3자 쿠키 중단
+중단 이유
+구글 크롬 브라우저의 제 3자 쿠키 중단 이유는구글 크롬의 브라우저를 통해 수집되는 데이터에 대해 투명성(transparency)과 사용자의 선택권(choice)과 통제권(control)을 강화해야 한다는 시민단체와 규제당국의 요구를 반영하기 위한 것입니다.
+
+*/
+</script>
+
+
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Author" content="">
+  <meta name="Keywords" content="">
+  <meta name="Description" content="">
+  <title>Cookie</title>
+ </head>
+ <body>
+<h2>2021년 3월 3일 업데이트 : 구글 크롬 제 3자 쿠키 중단</h2>
+<h3>중단 이유</h3>
+<p>구글 크롬 브라우저의 제 3자 쿠키 중단 이유는구글 크롬의 브라우저를 통해 수집되는 데이터에 대해 투명성(transparency)과 사용자의 선택권(choice)과 통제권(control)을 강화해야 한다는 시민단체와 규제당국의 요구를 반영하기 위한 것입니다.
+</p>
+ 
+ <script>
+
+	document.cookie = "myContents=My cookie; expires=Sat, 19 Nov 2021 12:00:00 UTC; path=/;domain=sample.com";
+	document.write(document.cookie);
+	document.write(document.cookie.split("=")[1]);
+
+		function display() {
+            var txt = "";
+            var ans = "";
+
+			if (document.cookie != ""){
+                txt = document.cookie.split(";"); // ';'를 기준으로 split
+                for(i in txt) // txt에 있는 쿠키들을 조사
+                {
+                    // name과 value 모두 있는 쿠키만 ans에 넣어준다.
+                    if (txt[i][txt[i].length - 1] != "=") { 
+                        ans += txt[i];
+                    }
+                }
+            }
+            
+			// 쿠키가 존재하지 않았을 경우
+            if (ans == ""){
+                alert("쿠키가 없습니다.");
+				console.log("쿠키가 없습니다.");
+	        // 쿠키가 존재할 경우 alert(ans); 
+            }else{
+                alert(ans);
+			}
+        }
+ 
+        function create1() {
+            document.cookie = "cookie1 = Crocus; expires = Wed, 18 Dec 2023 12:00:00 GMT ; path=/;domain=example.com";
+			console.log("test");
+            display();
+        }
+        function create2() {
+            document.cookie = "cookie2 = KKW; expires = Wed, 18 Dec 2023 12:00:00 GMT; path=/; domain=example.com";
+            display();
+        }
+        function delete1() {
+            document.cookie = "cookie1 = ; expires = Wed; 01 Jan 1970";
+            display();
+        }
+        function delete2() {
+            document.cookie = "cookie2 = ; expires = Wed; 01 Jan 1970";
+            display();
+        }
+ 
+     </script>
+
+
+    <h1>JavaScript Cookies</h1>
+ 
+    <p>아래 버튼을 눌러보세요!</p>
+    <button type="button" onclick="display()"> << 현재 쿠키 보기 >> </button>
+    <p></p>
+    <button type="button" onclick="create1()"> << 쿠키1 생성 클릭 >> </button>
+    <button type="button" onclick="create2()"> << 쿠키2 생성 클릭 >> </button>
+    <p></p>
+    <button type="button" onclick="delete1()"> << 쿠키1 삭제 클릭 >> </button>
+    <button type="button" onclick="delete2()"> << 쿠키2 삭제 클릭 >> </button>
+    <p></p>
+ 
+ </body>
+</html>
